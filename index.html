@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>video compare GUI v1.0.0</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <header>
+      <div class="header-top">
+        <h1>video compare GUI <a href="#" id="version-link" class="version-badge">v1.0.0</a></h1>
+        <div class="status-bar">
+          <div class="status-item" id="status-vidcompare" title="Click to toggle settings">
+            <span class="status-dot red" id="dot-vidcompare"></span>
+            <span class="status-label">Video Compare</span>
+          </div>
+          <div class="status-item" id="status-mediainfo" title="Click to toggle settings">
+            <span class="status-dot red" id="dot-mediainfo"></span>
+            <span class="status-label">MediaInfo</span>
+          </div>
+          <div class="btn-toggle-settings" id="btn-toggle-settings" title="Configure paths">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <p class="subtitle">Select or drop two videos to compare</p>
+    </header>
+
+    <!-- Hidden settings panel, toggled via cog or status item -->
+    <div class="settings-panel hidden" id="settings-panel">
+      <div class="settings-group" id="group-vidcompare">
+        <label for="exe-path" class="settings-label">video-compare executable path</label>
+        <div class="input-group">
+          <input type="text" id="exe-path" placeholder="e.g., C:\path\to\video-compare.exe" class="settings-input">
+          <button id="btn-browse-exe" class="btn-secondary">Browse...</button>
+        </div>
+        <a href="https://github.com/pixop/video-compare/releases" target="_blank" class="download-link">Video-Compare Download Page</a>
+      </div>
+      <div class="settings-group" id="group-mediainfo">
+        <label for="mediainfo-path" class="settings-label">MediaInfo executable path</label>
+        <div class="input-group">
+          <input type="text" id="mediainfo-path" placeholder="e.g., C:\path\to\MediaInfo.exe" class="settings-input">
+          <button id="btn-browse-mediainfo" class="btn-secondary">Browse...</button>
+        </div>
+        <a href="https://mediaarea.net/en/MediaInfo/Download/Windows" target="_blank" class="download-link">MediaInfo (CLI Version) Download Page</a>
+      </div>
+    </div>
+
+    <div class="dropzones-wrapper">
+      <!-- Video 1 Dropzone -->
+      <div class="dropzone" id="dropzone-1">
+        <div class="dropzone-content" id="dropzone-content-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          <div class="dropzone-label">Video File 1</div>
+          <div class="dropzone-instruction">Drag & drop or click to select</div>
+        </div>
+        <div class="file-details" id="file-details-1">
+          <div class="file-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#090a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+              <line x1="7" y1="2" x2="7" y2="22"/>
+              <line x1="17" y1="2" x2="17" y2="22"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <line x1="2" y1="7" x2="7" y2="7"/>
+              <line x1="2" y1="17" x2="7" y2="17"/>
+              <line x1="17" y1="17" x2="22" y2="17"/>
+              <line x1="17" y1="7" x2="22" y2="7"/>
+            </svg>
+          </div>
+          <div class="file-name" id="file-name-1">No file selected</div>
+          <div class="file-size" id="file-size-1"></div>
+          <div class="file-path" id="file-path-1">N/A</div>
+          
+          <!-- Metadata display -->
+          <div class="metadata-container" id="metadata-1">
+            <div class="meta-section">
+              <span class="meta-heading">Video</span>
+              <div class="meta-item" id="meta-video-1">Loading...</div>
+            </div>
+            <div class="meta-section">
+              <span class="meta-heading">Audio</span>
+              <div class="meta-item" id="meta-audio-1">Loading...</div>
+            </div>
+            <div class="meta-section">
+              <span class="meta-heading">Extra</span>
+              <div class="meta-item" id="meta-extra-1">None</div>
+            </div>
+            <div class="meta-sum" id="meta-sum-1"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video 2 Dropzone -->
+      <div class="dropzone" id="dropzone-2">
+        <div class="dropzone-content" id="dropzone-content-2">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          <div class="dropzone-label">Video File 2</div>
+          <div class="dropzone-instruction">Drag & drop or click to select</div>
+        </div>
+        <div class="file-details" id="file-details-2">
+          <div class="file-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#090a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+              <line x1="7" y1="2" x2="7" y2="22"/>
+              <line x1="17" y1="2" x2="17" y2="22"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <line x1="2" y1="7" x2="7" y2="7"/>
+              <line x1="2" y1="17" x2="7" y2="17"/>
+              <line x1="17" y1="17" x2="22" y2="17"/>
+              <line x1="17" y1="7" x2="22" y2="7"/>
+            </svg>
+          </div>
+          <div class="file-name" id="file-name-2">No file selected</div>
+          <div class="file-size" id="file-size-2"></div>
+          <div class="file-path" id="file-path-2">N/A</div>
+
+          <!-- Metadata display -->
+          <div class="metadata-container" id="metadata-2">
+            <div class="meta-section">
+              <span class="meta-heading">Video</span>
+              <div class="meta-item" id="meta-video-2">Loading...</div>
+            </div>
+            <div class="meta-section">
+              <span class="meta-heading">Audio</span>
+              <div class="meta-item" id="meta-audio-2">Loading...</div>
+            </div>
+            <div class="meta-section">
+              <span class="meta-heading">Extra</span>
+              <div class="meta-item" id="meta-extra-2">None</div>
+            </div>
+            <div class="meta-sum" id="meta-sum-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Command line pattern editor -->
+    <div class="cmd-panel">
+      <div class="cmd-header">
+        <label for="cmd-pattern" class="settings-label">Command Parameters</label>
+        <div class="cmd-status-wrapper">
+          <span id="cmd-edited-label" class="edited-label hidden">edited</span>
+          <button id="btn-reset-cmd" class="btn-reset hidden">Reset</button>
+        </div>
+      </div>
+      <input type="text" id="cmd-pattern" placeholder='video-compare.exe "{file1}" "{file2}"' class="settings-input">
+      <div class="cmd-preview-wrapper">
+        <input type="text" id="cmd-preview" class="cmd-preview-input" readonly value='video-compare.exe "<video 1>" "<video 2>"'>
+        <button id="btn-copy-cmd" class="btn-secondary btn-copy">Copy</button>
+      </div>
+    </div>
+
+    <div class="action-container">
+      <button id="btn-compare" class="btn-compare">Compare Videos</button>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
