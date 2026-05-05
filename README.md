@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# visual-compare-ui
-A frontend for visual-compare.
-=======
-# video compare GUI v1.0.0
+# guivid-compare v1.0.0
 
 An sleek Electron frontend for [video-compare](https://github.com/pixop/video-compare). It features MediaInfo integration, precise automatic stream statistics, and detailed background deep-scan extraction.
 
@@ -16,7 +12,7 @@ An sleek Electron frontend for [video-compare](https://github.com/pixop/video-co
 1. **Clone the repository:**
    ```bash
    git clone <your-repository-url>
-   cd video-compare-gui
+   cd guivid-compare
    ```
 
 2. **Install dependencies:**
@@ -47,4 +43,3 @@ This project is dual-licensed:
 
 > [!WARNING]
 > **Use at your own risk.** This application was developed with the assistance of Artificial Intelligence (AI). While efforts have been made to ensure stability, accuracy, and security, it is provided strictly "as-is." The author is not responsible for any data loss, system instability, or unexpected behavior resulting from the use of this software.
->>>>>>> 8772e44 (Initial Release v1.0.0 - Release Candidate)

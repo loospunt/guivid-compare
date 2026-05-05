@@ -1,11 +1,11 @@
 {
-  "name": "video-compare-frontend",
+  "name": "guivid-compare",
   "version": "1.0.0",
   "description": "Sleek frontend for video-compare",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "package-win": "electron-packager . video-compare-gui --platform=win32 --arch=x64 --overwrite --out=dist"
+    "package-win": "electron-packager . guivid-compare --platform=win32 --arch=x64 --overwrite --out=dist"
   },
   "author": "",
   "license": "AGPL-3.0",

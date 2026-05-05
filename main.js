@@ -5,9 +5,9 @@ const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 // Ensure we catch any extremely early crash
 let logPath;
 try {
-  logPath = path.join(app.getPath('userData'), 'video-compare-gui.log');
+  logPath = path.join(app.getPath('userData'), 'guivid-compare.log');
 } catch (e) {
-  logPath = path.join(process.env.TEMP || '/tmp', 'video-compare-gui-error.log');
+  logPath = path.join(process.env.TEMP || '/tmp', 'guivid-compare-error.log');
 }
 
 function log(message) {
@@ -59,7 +59,7 @@ function createWindow() {
         nodeIntegration: false
       },
       autoHideMenuBar: true,
-      title: "video compare GUI"
+      title: "guivid-compare"
     });
 
     win.loadFile('index.html');
